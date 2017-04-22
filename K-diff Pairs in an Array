@@ -1,0 +1,50 @@
+
+void sort(int* a, int l, int r){
+    int i=l, j=r, k=a[l];
+    if(i>=j) return;
+    while(i<j){
+        while(i<j && a[j]>= k) j--;
+        a[i]=a[j];
+        while(i<j && a[i]<= k) i++;
+        a[j]=a[i];
+    }
+    a[i]=k;
+    sort(a, l, i-1);
+    sort(a, i+1, r);
+}
+
+/*int findPairs(int* nums, int numsSize, int k) {   方法一，复杂度O(n^2)
+    int s=0;
+    sort(nums, 0, numsSize-1);
+    int temp=nums[0]-1;
+    for(int i=0; i<numsSize; i++){
+        for(int j=i+1; j<numsSize; j++){
+            if(fabs(nums[i]-nums[j])==k && nums[i]!=temp) {
+                s++;
+                temp=nums[i];
+            }
+        }
+    }
+    return s;
+}*/
+int findPairs(int* nums, int numsSize, int k) {   //方法二，双指示器
+    sort(nums,0,numsSize-1);
+    if(numsSize<2) return 0;
+    int start=0, end=1, count=0;
+    while(start<numsSize && end<numsSize){
+        if(nums[start]+k==nums[end]){
+            count++;
+            start++;
+            end++;
+            while(start<numsSize&&nums[start]==nums[start-1]) start++;
+            if(start>=end) end++;
+        }else if(nums[start]+k>nums[end]) end++;
+        else{
+            start++;
+            if(start>=end) end++;
+        }
+    }
+    return count;
+}
+
+
