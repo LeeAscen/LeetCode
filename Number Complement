@@ -1,0 +1,9 @@
+int findComplement(int num) {
+    int res=0, i=1;
+    while(num!=0){
+        if(num%2==0) res+=i;
+        i *=2;
+        num = num/2;
+    }
+    return res;
+}
