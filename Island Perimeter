@@ -1,0 +1,12 @@
+int islandPerimeter(int** grid, int gridRowSize, int gridColSize) {
+    int total=0, dul=0;
+    for(int i=0; i<gridRowSize; i++){
+        for(int j=0; j<gridColSize; j++){
+            if(grid[i][j]==1) total++;
+            if(j+1<gridColSize&&grid[i][j]==1 && grid[i][j+1]==1) dul++;
+            if(i+1<gridRowSize&&grid[i][j]==1 && grid[i+1][j]==1) dul++;
+        }
+    }
+    return 4*total-2*dul;
+    
+}
