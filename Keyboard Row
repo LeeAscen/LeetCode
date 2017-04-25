@@ -1,0 +1,65 @@
+/**
+ * Return an array of size *returnSize.
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+/*char** findWords(char** words, int wordsSize, int* returnSize) {   
+    char** res;
+    res=(char**)malloc(sizeof(char*)*wordsSize);
+    *returnSize=0;
+    char row1[]="qwertyuiop", row2[]="asdfghjkl", row3[]="zxcvbnm";
+    for(int i=0; i<wordsSize; i++){
+        char* word=words[i];
+        int j=1, flag=1;
+        if(strchr(row1,tolower(word[0]))){
+            while(word[j]!='\0'){
+                if(!strchr(row1,tolower(word[j++]))){
+                    flag=0;
+                    break;
+                }
+            }    
+        }else if(strchr(row2,tolower(word[0]))){
+            while(word[j]!='\0'){
+                if(!strchr(row2,tolower(word[j++]))){
+                    flag=0;
+                    break;
+                }
+            } 
+            
+        }else{
+            while(word[j]!='\0'){
+                if(!strchr(row3,tolower(word[j++]))){
+                    flag=0;
+                    break;
+                }
+            } 
+        }
+        if(flag) res[(*returnSize)++]=word;
+    }
+    return res;
+}*/
+
+ int inrow(char* row, char* word){
+    int i=0, flag=1;
+    while(word[i]!='\0'){
+        if(!strchr(row,tolower(word[i++]))){
+            flag=0;
+            break;
+        }
+    }
+    return flag;
+ }
+ char** findWords(char** words, int wordsSize, int* returnSize) {
+    char** res;
+    res=(char**)malloc(sizeof(char*)*wordsSize);
+    *returnSize=0;
+    char row1[]="qwertyuiop", row2[]="asdfghjkl", row3[]="zxcvbnm";
+    for(int i=0; i<wordsSize; i++){
+        char* word=words[i];
+        if(inrow(row1, word)) res[(*returnSize)++]=word;
+        else if(inrow(row2,word)) res[(*returnSize)++]=word;
+        else if(inrow(row3,word)) res[(*returnSize)++]=word;
+        else continue;
+    }
+    return res;
+}
+ 
