@@ -1,0 +1,14 @@
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        res = t
+        for w in s:
+            if w not in t:
+                return w
+            else:
+                res = res.replace(w, '', 1)
+        return res
