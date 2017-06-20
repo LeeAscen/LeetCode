@@ -1,0 +1,14 @@
+class Solution(object):
+    def titleToNumber(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        #本质为进制转换
+        res = 0; i=0
+        while(i<len(s)):
+            res = res*26 +ord(s[i])-ord('@')
+            i+=1
+        return res
+        
+        
