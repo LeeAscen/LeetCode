@@ -8,12 +8,12 @@
 class Solution(object):
     def findTilt(self, root):
         tot=[]
-        def inTrav(node):
+        def nodeSum(node):
             if node is None: return 0
-            x,y=inTrav(node.left),inTrav(node.right)
+            x,y=nodeSum(node.left),nodeSum(node.right)
             tot.append(abs(x-y))
             return x+y+node.val
         if root is None: return 0
-        tot.append(abs(inTrav(root.left)-inTrav(root.right)))
+        tot.append(abs(nodeSum(root.left)-nodeSum(root.right)))
         return sum(tot)
         
