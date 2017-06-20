@@ -1,0 +1,11 @@
+class Solution(object):
+    def minMoves(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        a = min(nums); res = 0
+        for num in nums:
+            res += num-a
+        return res
+        
